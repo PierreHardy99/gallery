@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter {{ parent() }}{% endblock %}
+{% block body %}
+
+    {% for message in app.flashes('danger') %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+    <main class="container">
+        <h3 class="display-5 my-3">Ajouter un tableau</h3>
+        <div class="row offset-1">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <div class="text-end">
+                <button type="submit" class="btn btn-outline-secondary">Ajoutez le tableau</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </main>
+{% endblock %}

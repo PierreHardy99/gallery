@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Teams{{ parent() }}{% endblock %}
+
+{% block body %}
+    <!-- Banner -->
+    <div class="banner">
+    </div>
+    <!-- End Banner -->
+
+    <div class="container">
+        <h2 class="my-5 text-black-50">Teams</h2>
+        <div class="row">
+            <div class="col-md-3 mt-2">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        <h5>Director</h5>
+                    </div>
+                    <img src="{{asset('img/avatar/042m.jpg')}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Barrett Williamson</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mt-2">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        <h5>Web Programmer</h5>
+                    </div>
+                    <img src="{{asset('img/avatar/011m.jpg')}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Rod Watsica</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mt-2">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        <h5>Graphics</h5>
+                    </div>
+                    <img src="{{asset('img/avatar/010f.jpg')}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Amina Torphy</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mt-2">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        <h5>Web security</h5>
+                    </div>
+                    <img src="{{asset('img/avatar/019f.jpg')}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Beyonce Jackson</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-3 mt-2">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        <h5>Scientist Data</h5>
+                    </div>
+                    <img src="{{asset('img/avatar/025m.jpg')}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">John Doe</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

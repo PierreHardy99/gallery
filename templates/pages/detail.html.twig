@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Detail {{ parent() }}{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <section id="detail">
+            <h2 class="my-5">{{ painting.title|capitalize }}</h2>
+            <div class="tab-content my-4">
+                <div class="tab-pane fade show active">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <img src="{{ asset('img/tableau/' ~ painting.imageName) }}" alt="Image {{ painting.id }}" class="img-fluid">
+                        </div>
+                        <div class="col-md-7">
+                            <h4>Description</h4>
+                            <p>{{ painting.description|capitalize }}</p>
+                            <h4>Auteur</h4>
+                            <p>{{ painting.author|upper }}</p>
+                            <h4>Hauteur</h4>
+                            <p>{{ painting.height }} cm</p>
+                            <h4>Largeur</h4>
+                            <p>{{ painting.width }} cm</p>
+                            <h4>Catégorie</h4>
+                            <p>{{ painting.category.name }}</p>
+                            <h4>Technique</h4>
+                            <p>{{ painting.technical.name }}</p>
+                            <h4>Création</h4>
+                            <p>{{ painting.makedAt|date('d/m/Y') }}</p>
+                            <h4>Ajouté le</h4>
+                            <p>{{ painting.createdAt|date('d/m/Y') }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-5" style="width: 50%">
+                <h4>Ajoutez un commentaire</h4>
+                {{ form(commentForm) }}
+            </div>
+
+            <div class="mt-5">
+                <h3>Commentaire</h3>
+                {% if not comments %}
+                    <h4>Aucun commentaire actuellement écrit sur ce tableau.</h4>
+                {% else %}
+                    {% for comment in comments %}
+                        <div class="card mt-4">
+                            <div class="card-header">
+                                <h4>Pseudo: {{ comment.pseudo }}</h4>
+                            </div>
+                            <div class="card-body">
+                                <blockquote class="blockquote mb-0">
+                                    <p>{{ comment.comment }}</p>
+                                    <footer class="blockquote-footer text-start">Ajouté le {{ comment.createdAt|date('d/m/Y') }} à {{ comment.createdAt|date('H:m:i') }}</footer>
+                                </blockquote>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {% if comments.getTotalItemCount > 3 %}
+                    <div class="navigation mt-3">
+                        {{ knp_pagination_render(comments) }}
+                    </div>
+                {% endif %}
+            </div>
+
+        </section>
+    </main>
+{% endblock %}

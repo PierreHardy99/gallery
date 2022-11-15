@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Home {{ parent() }} {% endblock %}
+
+{% block body %}
+
+    <main class="container">
+        <section class="mt-4 pt-4 text-center">
+            <div class="container">
+                <h1 class="jumbotron-heading">Bienvenue dans Gallery</h1>
+                <p class="lead text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut commodi debitis, deleniti est in nesciunt nihil nostrum officia provident voluptate. Commodi dolores enim iste possimus quam quidem tempora voluptatem voluptates. Ab aut commodi dolorem exercitationem id itaque quisquam quod quos.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="my-5 text-black-50">Informations importantes</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card border-shadow text-dark mb-3">
+                        <div class="card-header text-center text-primary"><i class="icofont-money"></i>&nbsp;&nbsp;PRENDRE RENDEZ-VOUS</div>
+                        <div class="card-body">
+                            <h4 class="card-title">Nous rendre visite</h4>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card border-shadow text-dark mb-3">
+                        <div class="card-header text-center text-primary"><i class="icofont-info-square"></i>&nbsp;&nbsp;INFORMATIONS</div>
+                        <div class="card-body">
+                            <h4 class="card-title">À propos des tableaux</h4>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card border-shadow text-dark mb-3">
+                        <div class="card-header text-center text-primary"><i class="icofont-ui-edit"></i>&nbsp;&nbsp;DONATIONS</div>
+                        <div class="card-body">
+                            <h4 class="card-title">Modalités des donations</h4>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tableau -->
+        <section>
+            <h2 class="my-5 text-black-50">Nos Tableaux</h2>
+            <div class="row">
+                {% for tab in tabs %}
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <img alt="picture '{{ tab.id }}'" src="{{ asset('img/tableau/' ~ tab.imageName) }}" class="p-1" style="height: 300px; width: 100%">
+                            <div class="card-body">
+                                <h5 class="card-title text-dark">{{ tab.title|capitalize }}</h5>
+                                <p class="card-text">Création: {{ tab.makedAt|date('d/m/Y') }}</p>
+                                <p>Catégorie: {{ tab.category.name|capitalize }}</p>
+                                <div class="text-end">
+                                    <a href="{{ path('detail', {slug:tab.slug}) }}" class="btn btn-secondary btn-sm">En savoir plus...</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {# display navigation #}
+            <div class="navigation">
+                {{ knp_pagination_render(tabs) }}
+            </div>
+        </section>
+        <!-- End Tableaux -->
+    </main>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commentaire {{ parent() }}{% endblock %}
+
+{% block body %}
+    {% if app.flashes('success') %}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% else %}
+        {% for message in app.flashes('danger') %}
+            <div class="alert alert-danger" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <main class="container">
+        <section id="comments">
+            <h2 class="display-4 my-4"><a href="{{ path('admin_painting') }}">Administration</a> - Commentaires</h2>
+            <div class="row">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Tableau</th>
+                        <th>Pseudo</th>
+                        <th>Commentaire</th>
+                        <th>Création</th>
+                        <th><i class="icofont-ui-delete"></i></th>
+                        <th><i class="icofont-eye"></i></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for comment in comments %}
+                        <tr>
+                            <td><a href="{{ path('detail', {slug:comment.painting.slug}) }}">{{ comment.painting.title|capitalize }}</a>
+                            </td>
+                            <td>{{ comment.pseudo }}</td>
+                            <td>{{ comment.comment }}</td>
+                            <td>{{ comment.createdAt|date('d/m/Y') }}</td>
+                            <td><a href="{{ path('admin_comment_delete', {id:comment.id}) }}"><i
+                                            class="icofont-ui-delete text-danger"></i></a></td>
+                            <td><a href="{{ path('admin_comment_view', {id:comment.id}) }}">
+                                    {% if comment.isPublished %}
+                                        <i class="icofont-eye text-success"></i>
+                                    {% else %}
+                                        <i class="icofont-eye text-danger"></i>
+                                    {% endif %}
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {# display navigation #}
+                <div class="navigation">
+                    {{ knp_pagination_render(comments) }}
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

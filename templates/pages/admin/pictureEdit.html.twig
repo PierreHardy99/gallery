@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification {{ parent() }}{% endblock %}
+{% block body %}
+    <main class="container">
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <h2 class="display-5 my-3">Modifier le tableau</h2>
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <div class="text-end">
+                    <button type="submit" class="btn btn-outline-secondary">Modifiez le tableau</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </main>
+{% endblock %}

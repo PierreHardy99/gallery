@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration {{ parent() }}{% endblock %}
+
+{% block body %}
+    {% if app.flashes('success') %}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% else %}
+        {% for message in app.flashes('danger') %}
+            <div class="alert alert-danger" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <main class="container">
+        <section id="paintings">
+            <h2 class="display-4 my-4"><a href="{{ path('admin_painting_new') }}">Ajouter</a> - <a href="{{ path('admin_comment') }}">Commentaire</a> </h2>
+            <div class="row">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Titre</th>
+                        <th>Auteur</th>
+                        <th>Fabrication</th>
+                        <th>Description</th>
+                        <th>Catégorie</th>
+                        <th>Technique</th>
+                        <th>Hauteur</th>
+                        <th>Largeur</th>
+                        <th>Ajouté</th>
+                        <th><i class="icofont-ui-delete"></i></th>
+                        <th><i class="icofont-ui-edit"></i></th>
+                        <th><i class="icofont-eye"></i></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for painting in paintings %}
+                        <tr>
+                            <td><img src="{{ asset('img/tableau/' ~ painting.imageName) }}" alt=""
+                                     class="painting-image img-fluid"></td>
+                            <td><a href="{{ path('detail', {slug:painting.slug}) }}">{{ painting.title|capitalize }}</a>
+                            </td>
+                            <td>{{ painting.author }}</td>
+                            <td>{{ painting.makedAt|date('d/m/Y') }}</td>
+                            <td>{{ painting.description }}</td>
+                            <td>{{ painting.category.name }}</td>
+                            <td>{{ painting.technical.name }}</td>
+                            <td>{{ painting.height }}</td>
+                            <td>{{ painting.width }}</td>
+                            <td>{{ painting.createdAt|date('d/m/Y') }}</td>
+                            <td><a href="{{ path('admin_painting_delete', {id:painting.id}) }}"><i
+                                            class="icofont-ui-delete text-danger"></i></a></td>
+                            <td><a href="{{ path('admin_painting_edit', {id:painting.id}) }}"><i class="icofont-ui-edit"></i></a></td>
+                            <td><a href="{{ path('admin_painting_view', {id:painting.id}) }}">
+                                    {% if painting.isPublished %}
+                                        <i class="icofont-eye text-success"></i>
+                                    {% else %}
+                                        <i class="icofont-eye text-danger"></i>
+                                    {% endif %}
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {# display navigation #}
+                <div class="navigation">
+                    {{ knp_pagination_render(paintings) }}
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

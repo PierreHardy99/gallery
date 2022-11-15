@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} - Gallery{% endblock %}</title>
+    <link type="image/png" sizes="16x16" rel="icon" href="{{ asset('img/icon/icon.png') }}">
+    <link rel="stylesheet" href="{{ asset('css/icofont.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+</head>
+<body>
+{% include 'partials/header.html.twig' %}
+{% block body %}{% endblock %}
+{% include 'partials/footer.html.twig' %}
+<script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>
